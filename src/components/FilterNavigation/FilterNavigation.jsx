@@ -9,11 +9,27 @@ export const FilterNavigation = (props) => {
     changeUser,
     productName,
     changeProductName,
+    selectedCategories,
+    changeCategories,
   } = props;
 
   const handleResetAllFilters = () => {
     changeUser(null);
     changeProductName('');
+    changeCategories([]);
+  };
+
+  const handleToggleCategory = (categoryTitle) => {
+    changeCategories((prevCategories) => {
+      if (prevCategories.includes(categoryTitle)) {
+        return prevCategories.filter(category => category !== categoryTitle);
+      }
+
+      return [
+        ...prevCategories,
+        categoryTitle,
+      ];
+    });
   };
 
   return (
@@ -79,16 +95,23 @@ export const FilterNavigation = (props) => {
           <a
             href="#/"
             data-cy="AllCategories"
-            className="button is-success mr-6 is-outlined"
+            className={classNames('button', 'is-success', 'mr-6', {
+              'is-outlined': selectedCategories.length > 0,
+            })}
+            onClick={() => changeCategories([])}
           >
             All
           </a>
+
           {categories.map(category => (
             <a
               key={category.id}
               data-cy="Category"
-              className="button mr-2 my-1 is-info"
+              className={classNames('button', 'mr-2', 'my-1', {
+                'is-info': selectedCategories.includes(category.title),
+              })}
               href="#/"
+              onClick={() => handleToggleCategory(category.title)}
             >
               {category.title}
             </a>

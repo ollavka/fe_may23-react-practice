@@ -19,6 +19,7 @@ const getPreparedProducts = (filterOptions) => {
   const {
     selectedUser,
     selectedProductName,
+    selectedCategories,
   } = filterOptions;
 
   const products = productsFromServer.map((product) => {
@@ -48,6 +49,14 @@ const getPreparedProducts = (filterOptions) => {
     ));
   }
 
+  if (selectedCategories.length > 0) {
+    preparedProducts = preparedProducts.filter((product) => {
+      const { category } = product;
+
+      return selectedCategories.includes(category.title);
+    });
+  }
+
   return preparedProducts;
 };
 
@@ -59,6 +68,7 @@ export const App = () => {
   const preparedProducts = getPreparedProducts({
     selectedUser,
     selectedProductName,
+    selectedCategories,
   });
 
   return (
