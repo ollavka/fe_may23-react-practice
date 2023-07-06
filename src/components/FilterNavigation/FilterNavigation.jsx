@@ -52,7 +52,7 @@ export const FilterNavigation = (props) => {
           {users.map(user => (
             <a
               key={user.id}
-              data-cy="FilterAllUsers"
+              data-cy="FilterUser"
               href="#/"
               className={classNames({
                 'is-active': user.id === selectedUser?.id,
