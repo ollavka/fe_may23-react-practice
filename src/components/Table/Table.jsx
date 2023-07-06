@@ -1,5 +1,5 @@
 import { TableBody } from '../TableBody';
-import TableHeader from '../TableHeader/TableHeader';
+import { TableHeader } from '../TableHeader/TableHeader';
 
 export const Table = (props) => {
   const {
