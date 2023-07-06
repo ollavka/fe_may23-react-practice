@@ -9,8 +9,6 @@ export const FilterNavigation = (props) => {
     changeUser,
     productName,
     changeProductName,
-    selectedCategories,
-    changeCategories,
   } = props;
 
   const handleResetAllFilters = () => {
